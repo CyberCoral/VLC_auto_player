@@ -205,8 +205,8 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""
             try:
                 os.system(f'start /b cmd /k "%PROGRAMFILES%/VideoLAN/VLC/vlc.exe" {files[i]}')
                 time.sleep(1)
-                hold_and_press(["alt","tab"],[])
                 if cmd_gen == True:
+                    hold_and_press(["alt","tab"],[])
                     pyautogui.hotkey("alt","f4")
                 
                 image=pyscreenshot.grab(bbox=(0, 0, 300, 45))

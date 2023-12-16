@@ -215,7 +215,6 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""
                 time.sleep(3) 
                 while True:
                     pos = imagesearch(f'blank.png')
-                    print(pos)
                     if pos == [-1,-1]:
                         break
 
@@ -229,7 +228,6 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""
             try:             
                 subprocess.run(["vlc",files[i]])
                 
-                image=pyscreenshot.grab(bbox=(210, 0, 350, 45))
                 image=pyscreenshot.grab(bbox=(0, 0, 300, 45))
                 time.sleep(2)
                 image.save(f'blank.png')         

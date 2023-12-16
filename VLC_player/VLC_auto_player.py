@@ -15,9 +15,9 @@
 ###
 
 ##  Steps to use this:
-##    -Step 1: Open VLC
+##    -Step 1: Open VLC at fullscreen.
 ##    -Step 2: Click on the VLC window.
-##    -Step 3: Click on IDLE/Shell
+##    -Step 3: Click on IDLE/Shell/IDE.
 ##    -Step 4: Enter VLC_auto_player(settings you want to use)
 ##              VLC_auto_player(loops = True || False, txt_files = [...], right_s = 1 (don't change))
 ##    -Step 5: Enjoy :D
@@ -88,9 +88,9 @@ def hold_and_press(hold: list = ["shift"], press: list = ["v"]):
         pyautogui.keyUp(i)
 
 ##  Steps to use this:
-##    -Step 1: Open VLC
+##    -Step 1: Open VLC at fullscreen.
 ##    -Step 2: Click on the VLC window.
-##    -Step 3: Click on IDLE/Shell
+##    -Step 3: Click on IDLE/Shell/IDE.
 ##    -Step 4: Enter VLC_auto_player(...)
 ##    -Step 5: Enjoy :D
         

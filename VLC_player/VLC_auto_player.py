@@ -31,8 +31,8 @@ import os, sys, subprocess, platform, re
 
 modules = ["pyautogui","pyperclip","pyscreenshot","keyboard","OpenCV-Python","numpy","mss"]
 
-##for i in modules:
-##    subprocess.run(["python","-m","pip","install",f"{i}"])
+for i in modules:
+    subprocess.run(["python","-m","pip","install",f"{i}"])
     
 import pyautogui, pyperclip
 import pyscreenshot

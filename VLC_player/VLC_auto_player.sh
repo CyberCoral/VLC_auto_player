@@ -1,3 +1,13 @@
+#!/bin/bash
+
+# ver. Sat/16/Dec/2023
+#
+# Made by: CyberCoral
+# ------------------------------------------------
+# Github:
+# https://www.github.com/CyberCoral
+#
+
 loop=$1
 case "$1" in 
     "true")

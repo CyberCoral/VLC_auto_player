@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ver. Sat/16/Dec/2023
+# ver. Sun/17/Dec/2023
 #
 # Made by: CyberCoral
 # ------------------------------------------------
@@ -34,6 +34,6 @@ done
 
 echo "import VLC_auto_player">>VLC.py
 echo "from VLC_auto_player import VLC_auto_player as VLC">>VLC.py
-echo "VLC($loop,txt_files=[${text_file[@]}],right_s=$right_s)">>VLC.py
+echo "VLC($loop,False,txt_files=[${text_file[@]}],right_s=$right_s)">>VLC.py
 python -m VLC
 rm VLC.py

@@ -242,13 +242,12 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""
             except FileNotFoundError:
                 pass
 
-    if loops == True:
-        if platform.system() == "Windows":
-            if loops == True:
+    if platform.system() == "Windows":
+        if loops == True:
+            windows_part(files,cmd_gen)
+        else:
+            while True:
                 windows_part(files,cmd_gen)
-            else:
-                while True:
-                    windows_part(files,cmd_gen)
         
     elif platform.system() == "Linux":
         if loops == True:

@@ -1,0 +1,7 @@
+pyautogui
+pyperclip
+pyscreenshot
+keyboard
+OpenCV-Python
+numpy
+mss

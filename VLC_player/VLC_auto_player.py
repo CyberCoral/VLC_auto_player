@@ -29,10 +29,15 @@
 # built-in
 import os, sys, subprocess, platform, re
 
-modules = ["pyautogui","pyperclip","pyscreenshot","keyboard","OpenCV-Python","numpy","mss"]
+with open("requirements.txt","r") as f:
+    a =[f.readlines()][0]
+    a = [(lambda b,c: c[b][::-1][1:][::-1] if b != len(c) - 1 else c[b])(i, a) for i in range(len(a))]
 
-for i in modules:
-    subprocess.run(["python","-m","pip","install",f"{i}"])
+    import importlib
+    for i in range(len(a)):
+        loader = importlib.util.find_spec(a[i])
+        if loader == None:
+            os.system(f"python -m pip install {a[i]}")
     
 import pyautogui, pyperclip
 import pyscreenshot

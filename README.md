@@ -6,7 +6,9 @@ It works on Windows and Linux, all the instructions are in the code.
 
 You can execute it in bash terminal / Linux terminals by using the .sh files (bash files) in the folder, which execute the python core programs.
 
-## Now, you can reproduce files of types such as mp3, mp4, avi... with file_auto_player()
+## Now, you can reproduce files of types such as mp3, mp4, avi... with file_auto_player().
+
+# The latest feature is that you can now put any file or url, or even text files with files and links, in any_auto_player().
 
 The first version was made on 16/Dec/2023.
 
@@ -29,5 +31,11 @@ The first version was made on 16/Dec/2023.
 # Steps to use file_auto_player()
 ###    -Step 1: Put your files in VLC_player folder.
 ###    -Step 2: Put files=(your files) in file_auto_player()
+###    -Step 3: Press Enter
+###    -Step 4: Enjoy :·D
+
+# Steps to use any_auto_player()
+###    -Step 1: Put your files in VLC_player folder.
+###    -Step 2: Put your files or urls on objects=(objects) in any_auto_player()
 ###    -Step 3: Press Enter
 ###    -Step 4: Enjoy :·D

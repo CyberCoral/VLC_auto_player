@@ -1,4 +1,3 @@
-loop=$1
 case "$1" in 
     "true")
     loop="True"
@@ -12,7 +11,20 @@ case "$1" in
     ;;
 esac
 
-files=("${@:2:$#}")
+case "$2" in 
+    "true")
+    txt_="True"
+    ;;
+    "false")
+    txt_="False"
+    ;;
+    *)
+    echo "$2 not in [true, false]"
+    exit 1
+    ;;
+esac
+
+files=("${@:3:$#}")
 file=("'${files[0]}'")
 
 len=${#files[@]}
@@ -23,6 +35,6 @@ done
 
 echo "import VLC_auto_player">>reproduce_file_VLC.py
 echo "from VLC_auto_player import file_auto_player as VLC">>reproduce_file_VLC.py
-echo "VLC($loop,False,files=[${file[@]}])">>reproduce_file_VLC.py
+echo "VLC($loop,False,$txt_,files=[${file[@]}])">>reproduce_file_VLC.py
 python -m reproduce_file_VLC
 rm reproduce_file_VLC.py

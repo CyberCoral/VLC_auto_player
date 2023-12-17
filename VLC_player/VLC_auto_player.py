@@ -1,4 +1,4 @@
-# ver. Sat/16/Dec/2023
+# ver. Sun/17/Dec/2023
 #
 # Made by: CyberCoral
 # ------------------------------------------------
@@ -118,12 +118,17 @@ def VLC_auto_player(loop: bool = True,*,txt_files: str = ['music_for_vlc.txt'], 
             pyautogui.hotkey("ctrl","v")
             pyautogui.hotkey("enter")
 
-            time.sleep(4)
-            
+            image=pyscreenshot.grab(bbox=(0, 0, 1500, 45))
+            time.sleep(2)
+            image.save(f'blank.png')         
+            time.sleep(3) 
+        
             while True:
-                pos = imagesearch(f'cone.png')
-                if pos != [-1,-1]:
+                pos = imagesearch(f'blank.png')
+                if pos == [-1,-1]:
                     break
+
+            os.remove("blank.png")
                 
     try:
         AEC.AutomatedErrorTypeFinder([loop, right_s, txt_files],["1","1","00001"])
@@ -148,9 +153,6 @@ def VLC_auto_player(loop: bool = True,*,txt_files: str = ['music_for_vlc.txt'], 
 
         time.sleep(0.4)
 
-        image=pyscreenshot.grab(bbox=(800, 300, 1200, 700))
-        image.save(f'cone.png')     
-
         if loop != True:
             for i in range(len(txt_files)):
                 put_new_song(s_prime[i])         
@@ -164,7 +166,7 @@ def VLC_auto_player(loop: bool = True,*,txt_files: str = ['music_for_vlc.txt'], 
         print("Thanks for using this program, goodbye user :D")
         time.sleep(2)
     
-    os.remove("cone.png")
+    os.remove("blank.png")
     
     exit(0)
 
@@ -185,14 +187,14 @@ def create_playlist(txt_file: str = "playlist_0.txt", *songs):
             songs[i] = songs[i].replace("https://","http://")
             f.write(f"{songs[i]}\n")
 
-def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""]):
+def file_auto_player(loops: bool = True,cmd_gen: bool = True,txt_: bool = False,*,files: list = [""]):
     '''
     It auto plays any file
     (mp3, mp4, avi...) on VLC,
     and it works for Windows 
     and Linux (WIP).
     '''
-    AEC.AutomatedErrorTypeFinder([loops,cmd_gen,files],["1","1","00001"])
+    AEC.AutomatedErrorTypeFinder([loops,cmd_gen,files, txt_],["1","1","00001","1"])
     AEC.AutomatedConditionCheck([[isinstance(files[i], str) for i in range(len(files))]],["var.count(False) == 0"],[2])
 
     os.chdir("/")
@@ -200,62 +202,86 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,*,files: list = [""
     folder = folder[:re.search("VLC_player",folder).end()]+"/"
     os.chdir(folder)
 
-    def windows_part(files, cmd_gen: bool = True):
-        for i in range(len(files)):
-            try:
-                os.system(f'start /b cmd /k "%PROGRAMFILES%/VideoLAN/VLC/vlc.exe" {files[i]}')
-                time.sleep(1)
-                if cmd_gen == True:
-                    hold_and_press(["alt","tab"],[])
-                    pyautogui.hotkey("alt","f4")
-                
-                image=pyscreenshot.grab(bbox=(0, 0, 300, 45))
-                time.sleep(2)
-                image.save(f'blank.png')         
-                time.sleep(3) 
+    try:
+        def windows_part(files, cmd_gen: bool = True, txt_: bool = False):
+            s_prime = []
+            if txt_ == True:
+                for i in range(len(files)):
+                    with open(files[i], "r") as f:
+                        s_prime.append(f.readlines())
+            else:
+                s_prime=[list(files)]
+
+            for j in range(len(s_prime)):
+                files = s_prime[j]
+                for i in range(len(files)):
+                    try:
+                        os.system(f'start /b cmd /k "%PROGRAMFILES%/VideoLAN/VLC/vlc.exe" {files[i]}')
+                        time.sleep(1)
+                        if cmd_gen == True:
+                            hold_and_press(["alt","tab"],[])
+                            pyautogui.hotkey("alt","f4")
+                        
+                        image=pyscreenshot.grab(bbox=(0, 0, 1500, 45))
+                        time.sleep(2)
+                        image.save(f'blank.png')         
+                        time.sleep(3) 
+                        while True:
+                            pos = imagesearch(f'blank.png')
+                            if pos == [-1,-1]:
+                                break
+
+                        pyautogui.hotkey("alt","f4")
+                        
+                    except FileNotFoundError:
+                        pass
+
+        def linux_part(files, txt_: bool = False):
+            s_prime = []
+            if txt_ == True:
+                for i in range(len(files)):
+                    with open(files[i], "r") as f:
+                        s_prime.append(f.readlines())
+            else:
+                s_prime=[list(files)]
+
+            for j in range(len(s_prime)):
+                files = s_prime[j]            
+                for i in range(len(files)):
+                    try:             
+                        subprocess.run(["vlc",files[i]])
+                        
+                        image=pyscreenshot.grab(bbox=(0, 0, 1500, 45))
+                        time.sleep(2)
+                        image.save(f'blank.png')         
+                        time.sleep(3) 
+                        while True:
+                            pos = imagesearch(f'blank.png')
+                            if pos == [-1,-1]:
+                                break
+
+                        pyautogui.hotkey("alt","f4")
+
+                    except FileNotFoundError:
+                        pass
+
+        if platform.system() == "Windows":
+            if loops != True:
+                windows_part(files,cmd_gen, txt_)
+            else:
                 while True:
-                    pos = imagesearch(f'blank.png')
-                    if pos == [-1,-1]:
-                        break
-
-                pyautogui.hotkey("alt","f4")
-                
-            except FileNotFoundError:
-                pass
-
-    def linux_part(files):
-        for i in range(len(files)):
-            try:             
-                subprocess.run(["vlc",files[i]])
-                
-                image=pyscreenshot.grab(bbox=(0, 0, 300, 45))
-                time.sleep(2)
-                image.save(f'blank.png')         
-                time.sleep(3) 
+                    windows_part(files,cmd_gen, txt_)
+            
+        elif platform.system() == "Linux":
+            if loops != True:
+                linux_part(files, txt_)
+            else:
                 while True:
-                    pos = imagesearch(f'blank.png')
-                    if pos == [-1,-1]:
-                        break
+                    linux_part(files, txt_)
 
-                pyautogui.hotkey("alt","f4")
-
-            except FileNotFoundError:
-                pass
-
-    if platform.system() == "Windows":
-        if loops == True:
-            windows_part(files,cmd_gen)
-        else:
-            while True:
-                windows_part(files,cmd_gen)
-        
-    elif platform.system() == "Linux":
-        if loops == True:
-            linux_part(files)
-        else:
-            while True:
-                linux_part(files)
-
+    except KeyboardInterrupt:  
+        print("Thanks for using this program, goodbye user :D")
+        time.sleep(2)
 
     else:
         raise OSError("OS {} is not supported.".format(platform.system()))

@@ -10,6 +10,8 @@ You can execute it in bash terminal / Linux terminals by using the .sh files (ba
 
 The first version was made on 16/Dec/2023.
 
+# The last version, unless there a major implementation is possible, is the one made on 17/Dec/2023.
+
 ###
 ### Download VLC: https://www.videolan.org/vlc/index.es.html
 ###

@@ -154,14 +154,14 @@ def VLC_auto_player(loop: bool = True,cmd_gen: bool = True,*,txt_files: str = ['
         time.sleep(2)
 
         if platform.system()  == "Windows":
-            os.system(f'start /b cmd /k "%PROGRAMFILES%/VideoLAN/VLC/vlc.exe" {loaded}')
+            os.system(f'start /b cmd /k "%PROGRAMFILES%/VideoLAN/VLC/vlc.exe"')
             time.sleep(1)
             if cmd_gen == True:
                 hold_and_press(["alt","tab"],[])
                 pyautogui.hotkey("alt","f4")
 
         elif platform.system() == "Linux":
-            subprocess.run(["vlc",f"{loaded}"])
+            os.system('vlc')
 
         time.sleep(0.4)
 
@@ -262,7 +262,7 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,txt_: bool = False,
                 files = s_prime[j]            
                 for i in range(len(files)):
                     try:             
-                        subprocess.run(["vlc",files[i]])
+                        os.system(f"vlc {files[i]}")
                         time.sleep(2)       
                         image=pyscreenshot.grab(bbox=(0, 0, 1500, 45))
                         image.save(f'blank.png')         
@@ -415,7 +415,7 @@ def any_auto_player(loops: bool = True, cmd_gen: bool = True, txt_: bool = True,
 
         def linux_part(files, txt_: bool = False):
             try:             
-                subprocess.run(["vlc",f"{files}"])
+                os.system(f"vlc {files}")
 
                 time.sleep(2)
                 image=pyscreenshot.grab(bbox=(0, 0, 1500, 45))

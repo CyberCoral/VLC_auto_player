@@ -35,6 +35,6 @@ done
 
 echo "import VLC_auto_player">>reproduce_file_VLC.py
 echo "from VLC_auto_player import any_auto_player as VLC">>reproduce_file_VLC.py
-echo "VLC($loop,False,$txt_,[${file[@]}])">>reproduce_file_VLC.py
+echo "VLC($loop,False,$txt_,objects=[${file[@]}])">>reproduce_file_VLC.py
 python -m reproduce_file_VLC
 rm reproduce_file_VLC.py

@@ -304,7 +304,7 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,txt_: bool = False,
 
 
 
-def any_auto_player(loops: bool = True, cmd_gen: bool = True, txt_: bool = True, objects: list = [""]):
+def any_auto_player(loops: bool = True, cmd_gen: bool = True, txt_: bool = True,*,objects: list = [""]):
     '''
     It autoplays anything,
     like links, mp3 and mp4 fies...;

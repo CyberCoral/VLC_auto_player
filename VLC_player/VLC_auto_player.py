@@ -284,12 +284,12 @@ def file_auto_player(loops: bool = True,cmd_gen: bool = True,txt_: bool = False,
                 while True:
                     linux_part(files, txt_)
 
+        else:
+            raise OSError("OS {} is not supported.".format(platform.system()))
+
     except KeyboardInterrupt:  
         print("Thanks for using this program, goodbye user :D")
         time.sleep(2)
-
-    else:
-        raise OSError("OS {} is not supported.".format(platform.system()))
 
     os.remove('blank.png')
 
